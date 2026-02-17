@@ -1,0 +1,17 @@
+# Compiled files
+*.out
+*.exe
+*.o
+*.obj
+
+# macOS
+.DS_Store
+
+# VS Code
+.vscode/
+
+# CLion
+.idea/
+cmake-build-*/
+
+*.log
