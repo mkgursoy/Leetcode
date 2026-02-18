@@ -76,3 +76,42 @@ public:
         return dp[(int)s.size()][(int)vec.size() - 1];
     }
 };
+/*
+    Thoughts:
+
+    -At first I though about simply trying every single way we could use each '*' sign, but even though
+    this seems like it would work (there is about 10^7 ways to assign the number of uses to each), this 
+    inevitably got TLE. So I had to find the actual solution which was pretty fun to think about.
+
+    I came up with a solution that has about a O(N^2 * M) time complexity N and M being the sizes of s and p,
+    respectively.
+
+    Solution:
+
+    We will use Dynamic Programming to solve this problem. In a DP problem you find these in order.
+
+    1- State (What DP represents): DP[i][j] will be the answer for substrings s: [0, i] p: [0, j]. 
+
+    2- Answer: DP[N][M], which basically is all of s and p involved.
+
+    3- Transitions: This is the part it gets complicated.
+
+    -The current state of p isn't very simple. We will represent p as pairs. {char ch, bool tr}:
+
+    *ch represents the character and tr represents if it can be used multiple amount of times (if it has '*' after)
+
+    -Now if we know the answer for s: [0, i] and p: [0, j - 1] we should examine what we can do with p[j]
+
+    -If we can use it multiple find we can calculate s: [i, N] by simply adding the character multiple or zero times.
+
+    -Otherwise, we HAVE to use it one time so we find out s : i + 1 p : j
+
+    -The transitions for this are trivial, find out the base case j : 0 
+
+    -Now you will see in my code i made the dp array not [N][M] but [N + 1][M]. This is because of 
+    the zero uses rule. So the modified state is s : [0, i) p : [0, j] this is purely based on my implementation
+    the logic won't change.
+
+    -This is a tricky problem, and the explanation can also look pretty complicated I would suggest experimenting with it
+    till you can confidently write the same yourself.
+*/
